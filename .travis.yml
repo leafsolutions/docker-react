@@ -1,0 +1,12 @@
+language: generic
+sudo: required
+services:
+  - docker
+
+# leafsolutions/docker-react follows the convention:
+# image tag = {username}/{project name}
+before_install:
+  - docker build-t leafsolutions/docker-react -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true leafsolutions/docker-react npm run test
