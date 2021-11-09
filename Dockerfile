@@ -1,7 +1,7 @@
-# remember to delete the node_modules to avoid duplicates
-FROM node:alpine AS builder
+# Production configuration
+FROM node:16-alpine AS builder
 WORKDIR '/app'
-COPY package.json .
+COPY package*.json .
 RUN npm install
 COPY . .
 RUN npm run build

@@ -4,9 +4,10 @@ services:
   - docker
 
 # leafsolutions/docker-react follows the convention:
-# image tag = {username}/{project name}
+# image tag = {username}/{project name}:{tag}
 before_install:
   - docker build -t leafsolutions/docker-react -f Dockerfile.dev .
-
+# CI=true
+# https://create-react-app.dev/docs/running-tests/#linux-macos-bash
 script:
   - docker run -e CI=true leafsolutions/docker-react npm run test
