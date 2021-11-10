@@ -1,0 +1,24 @@
+# development / test configuration
+version: '3.9'
+services:
+  web:
+    environment:
+      - CHOKIDAR_USEPOLLING=true #fix for windows
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - '8000:3000'
+    volumes:
+      - .:/app
+      - /app/node_modules
+  tests:
+    environment:
+      - CHOKIDAR_USEPOLLING=true #fix for windows
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: ['npm', 'run', 'test']
